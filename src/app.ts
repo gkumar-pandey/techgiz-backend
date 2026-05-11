@@ -7,10 +7,17 @@ import { ENV } from './config/env';
 const app = express();
 
 app.use(helmet());
-app.use(cors({ origin: ENV.CLIENT_URL }));
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    // methods: ['GET', 'POST'],        
+    optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
-
+app.get('/', (req, res) => {
+    res.send('Welcome to TechGiz API');
+});
 
 
 
